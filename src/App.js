@@ -120,6 +120,12 @@ class App extends Component {
                         )}
                       >
                         {item.name}
+                        <ul>
+                          {item.members &&
+                            item.members.map(member => (
+                              <li> {member.fullName}</li>
+                            ))}
+                        </ul>
                       </div>
                     )}
                   </Draggable>
