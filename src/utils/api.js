@@ -7,9 +7,10 @@ module.exports = {
         params: {
           key: process.env.REACT_APP_TRELLO_API,
           token: process.env.REACT_APP_TRELLO_TOKEN,
-          query: 'due:day',
+          query: '@timostollenwerk due:day',
           idBoards: 'mine',
-          modelTypes: 'cards'
+          modelTypes: 'cards',
+          member_fields: 'avatarHash,fullName,initials,username,confirmed'
         }
       })
       .then(function(response) {
