@@ -7,7 +7,9 @@ module.exports = {
         params: {
           key: process.env.REACT_APP_TRELLO_API,
           token: process.env.REACT_APP_TRELLO_TOKEN,
-          query: 'due:day'
+          query: 'due:day',
+          idBoards: 'mine',
+          modelTypes: 'cards'
         }
       })
       .then(function(response) {
