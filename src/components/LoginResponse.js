@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {accessURL, requestURL} from "../config/constants";
 import {trelloApiKey, trelloOauthSecret} from "../config/api";
+import {OAuth} from 'oauth';
 
 let tokenSecret = localStorage.getItem('tokenSecret');
-const {OAuth} = require('oauth');
 const loginCallback = window.location.origin + '/login-success';
 
 export default function(props) {
