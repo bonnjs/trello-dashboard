@@ -1,11 +1,7 @@
 import React from 'react';
-import {trelloApiKey, trelloOauthSecret} from '../config/api'
+import {requestURL, accessURL, authorizeURL, appName} from '../config/constants';
+import {trelloApiKey, trelloOauthSecret} from '../config/api';
 const {OAuth} = require('oauth');
-
-const requestURL = "https://trello.com/1/OAuthGetRequestToken";
-const accessURL = "https://trello.com/1/OAuthGetAccessToken";
-const authorizeURL = "https://trello.com/1/OAuthAuthorizeToken";
-const appName = "Trello Dashboard";
 
 const loginCallback = window.location.origin + '/login-success';
 const oauth = new OAuth(requestURL, accessURL, trelloApiKey, trelloOauthSecret, "1.0A", loginCallback, "HMAC-SHA1");
