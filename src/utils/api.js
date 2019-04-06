@@ -4,9 +4,9 @@ module.exports = {
   fetchAllBoards: function(userId) {
     return axios
       .get(
-        `https://api.trello.com/1/members/me/boards?key=${
+        `https://api.trello.com/1/search?key=${
           process.env.REACT_APP_TRELLO_API
-        }&token=${process.env.REACT_APP_TRELLO_TOKEN}`
+        }&token=${process.env.REACT_APP_TRELLO_TOKEN}&query=due:day`
       )
       .then(function(response) {
         console.log(response.data);
