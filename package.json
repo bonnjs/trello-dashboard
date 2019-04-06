@@ -16,6 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "prettier": "node_modules/prettier/bin-prettier.js src/**/*.{js,jsx,ts,tsx,json,css,scss,md} --write",
     "prettier:check": "node_modules/prettier/bin-prettier.js src/**/*.{js,jsx,ts,tsx,json,css,scss,md} --check"
   },
   "husky": {
@@ -25,7 +26,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --single-quote --write",
+      "prettier --write",
       "git add"
     ]
   },
