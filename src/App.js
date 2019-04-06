@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+var api = require("./utils/api");
 
 // fake data generator
 const getItems = count =>
@@ -62,6 +63,18 @@ class App extends Component {
     this.setState({
       items
     });
+  }
+
+  componentDidMount() {
+    api.fetchAllBoards().then(
+      function(allBoards) {
+        this.setState(function() {
+          return {
+            allBoards: allBoards
+          };
+        });
+      }.bind(this)
+    );
   }
 
   // Normally you would want to split things out into separate components.
