@@ -11,6 +11,7 @@
 # production
 /build
 .idea
+.config/api.js
 # misc
 .DS_Store
 .env.local
