@@ -8,6 +8,7 @@ const oauth = new OAuth(requestURL, accessURL, trelloApiKey, trelloOauthSecret, 
 
 const login = () =>  {
     oauth.getOAuthRequestToken(function(error, token, tokenSecret, results){
+        localStorage.setItem('tokenSecret', tokenSecret);
         window.location.href = `${authorizeURL}?oauth_token=${token}&name=${appName}`;
     });
 };

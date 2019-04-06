@@ -1,18 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {accessURL, requestURL} from "../config/constants";
+import {trelloApiKey, trelloOauthSecret} from "../config/api";
+
+let tokenSecret = localStorage.getItem('tokenSecret');
+const {OAuth} = require('oauth');
+const loginCallback = window.location.origin + '/login-success';
+
 export default function(props) {
     let queryParams = props.location.search.substr(1,);
+
     let [authToken, verifyToken] = queryParams.split('&').map(token=> token.split('=')[1]);
     const isLoggedIn = authToken && verifyToken;
+    const oauth = new OAuth(requestURL, accessURL, trelloApiKey, trelloOauthSecret, "1.0A", loginCallback, "HMAC-SHA1");
+    let userInfo = {};
 
-    //use authToken and verifyToken to request network
 
-    const successMessage =  <p> Succesfully logged in</p>;
-    const errorMessage = <p> Oh , something went wrong. Did you denied permision? <Link to="/">Back to login page</Link> </p>;
+    // just an example request to showcase how the requests can be made
+    oauth.getOAuthAccessToken(authToken, tokenSecret, verifyToken, function(error, accessToken, accessTokenSecret, results){
+        oauth.getProtectedResource("https://api.trello.com/1/members/me", "GET", accessToken, accessTokenSecret, (error, data, response)=>{
+            if(data) {
+                userInfo = JSON.parse(data);
+                console.log(userInfo);
+            }
+        });
+    });
 
-    return (
-        <div>
-            {isLoggedIn ? successMessage :errorMessage}
-        </div>
-    );
+    if(isLoggedIn && userInfo) {
+        return  (
+            <div>
+                successfully logged in, check console
+            </div>
+        )
+    } else {
+        return (
+            <p> Oh , something went wrong. Did you denied permission? <Link to="/">Back to login page</Link> </p>
+        )
+    }
 }
