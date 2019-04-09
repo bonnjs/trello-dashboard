@@ -1,16 +1,16 @@
-var axios = require('axios');
+var axios = require("axios");
 
 module.exports = {
   fetchAllBoards: function(userId) {
     return axios
-      .get('https://api.trello.com/1/search', {
+      .get("https://api.trello.com/1/search", {
         params: {
           key: process.env.REACT_APP_TRELLO_API,
           token: process.env.REACT_APP_TRELLO_TOKEN,
-          query: '@timostollenwerk due:day',
-          idBoards: 'mine',
-          modelTypes: 'cards',
-          member_fields: 'avatarHash,fullName,initials,username,confirmed'
+          query: "@timostollenwerk due:day",
+          idBoards: "mine",
+          modelTypes: "cards",
+          member_fields: "avatarHash,fullName,initials,username,confirmed"
         }
       })
       .then(function(response) {
